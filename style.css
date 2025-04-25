@@ -140,105 +140,214 @@ button:hover:before {
 
 .call-screen {
   display: none;
-  margin-top: 20px;
-  background: rgba(0, 0, 0, 0.9);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  padding: 30px 20px;
-  border-radius: 20px;
+  background: #000000;
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('https://i.imgur.com/BaOfBxU.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   color: white;
   text-align: center;
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 350px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-  z-index: 1000;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 9999;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+  overflow: hidden;
+}
+
+.call-status-bar {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  font-size: 14px;
+  align-items: center;
+  z-index: 100;
+}
+
+.call-status-bar .time {
+  font-weight: bold;
+}
+
+.call-status-bar .network {
+  display: flex;
+  align-items: center;
+}
+
+.call-status-bar .network-icon {
+  margin-left: 10px;
+  font-size: 16px;
 }
 
 .caller-info {
-  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+  margin: 0 auto;
+  max-width: 300px;
 }
 
-.caller-img {
-  width: 80px;
-  height: 80px;
+.caller-avatar {
+  font-size: 70px !important;
+  color: #f5f5f5;
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 50%;
-  margin-bottom: 15px;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  width: 120px !important;
+  height: 120px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
 }
 
 .call-screen h2 {
-  font-size: 1.5em;
+  font-size: 1.4em;
   color: white;
   margin: 10px 0;
+  font-weight: 500;
 }
 
 .call-screen p {
-  font-size: 1.2em;
+  font-size: 1.6em;
   color: white;
-  margin-bottom: 20px;
+  margin: 5px 0 15px;
+  font-weight: 600;
+}
+
+.call-timer {
+  font-size: 0.9em;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 5px;
+  font-weight: normal;
+}
+
+.call-controls {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  padding: 0 30px;
+  margin: 20px 0;
+}
+
+.call-control-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  justify-content: center;
+  border: none;
+  color: white;
+}
+
+.call-control-btn .material-symbols-rounded {
+  font-size: 24px;
+}
+
+.call-control-label {
+  font-size: 0.7em;
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .call-actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  width: 100%;
+  padding: 0 30px 50px;
 }
 
 .decline-btn, .accept-btn {
-  width: 48%;
-  padding: 14px 0;
-  font-weight: bold;
-  border-radius: 50px;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border: none;
 }
 
 .decline-btn {
-  background: linear-gradient(to right, #ff4d4d, #ff6666);
+  background: #FF3B30;
   color: white;
 }
 
 .accept-btn {
-  background: linear-gradient(to right, #4CAF50, #66BB6A);
+  background: #4CD964;
   color: white;
 }
 
-.decline-btn:hover, .accept-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4);
+.decline-btn:active, .accept-btn:active {
+  transform: scale(0.95);
 }
 
-.helpline {
-  margin-top: 30px;
-  text-align: left;
+.decline-btn .material-symbols-rounded, 
+.accept-btn .material-symbols-rounded {
+  font-size: 30px;
 }
 
-.helpline ul {
-  list-style: none;
-  padding: 0;
+.call-reminder {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 0.8em;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 8px 0;
 }
 
-.helpline li {
-  margin-bottom: 12px;
-  font-size: 1.1em;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+.call-carrier {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 0.75em;
+  color: rgba(255, 255, 255, 0.7);
 }
 
-.helpline li:hover {
-  background: rgba(255, 255, 255, 0.8);
-  transform: translateX(5px);
-}
-
-.helpline li strong {
-  color: #d6336c;
+/* Mobile-specific adjustments */
+@media screen and (max-width: 480px) {
+  .caller-info {
+    padding-top: 100px;
+  }
+  
+  .call-actions {
+    padding-bottom: 70px;
+  }
 }
 
 /* Navbar */
@@ -804,20 +913,6 @@ button:hover:before {
   vertical-align: middle;
 }
 
-/* Call screen avatar */
-.caller-avatar {
-  font-size: 5em;
-  margin-bottom: 10px;
-  color: white;
-  background: rgba(255, 255, 255, 0.1);
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 /* Tips icon styling */
 .tip-icon {
   font-size: 1.8em;
@@ -907,5 +1002,24 @@ button:hover:before {
   
   .back-link {
     margin-bottom: 25px;
+  }
+}
+
+.accept-btn.ringing {
+  animation: ringing 1.5s infinite;
+}
+
+@keyframes ringing {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(76, 217, 100, 0);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(76, 217, 100, 0.4);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(76, 217, 100, 0);
   }
 }

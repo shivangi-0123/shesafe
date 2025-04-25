@@ -33,19 +33,51 @@
   </div>
   
   <div class="call-screen" id="callScreen">
+    <div class="call-status-bar">
+      <div class="time" id="statusTime">12:30</div>
+      <div class="network">
+        <span class="network-icon material-symbols-rounded">wifi</span>
+        <span class="network-icon material-symbols-rounded">network_cell</span>
+        <span class="network-icon material-symbols-rounded">battery_full</span>
+      </div>
+    </div>
+    <div class="call-reminder">iPhone</div>
+    <div class="call-carrier">Carrier</div>
+    
     <div class="caller-info">
       <span class="material-symbols-rounded caller-avatar">account_circle</span>
-      <h2>Incoming Call...</h2>
+      <h2>Incoming Call</h2>
       <p>Mom</p>
+      <div class="call-timer" id="callTimer">Calling...</div>
     </div>
+    
+    <div class="call-controls">
+      <div>
+        <button class="call-control-btn">
+          <span class="material-symbols-rounded">volume_up</span>
+        </button>
+        <div class="call-control-label">Speaker</div>
+      </div>
+      <div>
+        <button class="call-control-btn">
+          <span class="material-symbols-rounded">mic_off</span>
+        </button>
+        <div class="call-control-label">Mute</div>
+      </div>
+      <div>
+        <button class="call-control-btn">
+          <span class="material-symbols-rounded">dialpad</span>
+        </button>
+        <div class="call-control-label">Keypad</div>
+      </div>
+    </div>
+    
     <div class="call-actions">
       <button class="decline-btn" onclick="endFakeCall()">
         <span class="material-symbols-rounded">call_end</span>
-        Decline
       </button>
       <button class="accept-btn" onclick="endFakeCall()">
         <span class="material-symbols-rounded">call</span>
-        Accept
       </button>
     </div>
   </div>
