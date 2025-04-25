@@ -35,16 +35,16 @@ body::before {
 .container {
   text-align: center;
   max-width: 400px;
-  width: 90%;
+  width: 95%;
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   padding: 25px;
   border-radius: 20px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-  margin: 20px auto;
+  margin: auto;
   border: 1px solid rgba(255, 255, 255, 0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-radius 0.3s ease, width 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
 }
@@ -87,6 +87,9 @@ button {
   overflow: hidden;
   color: #333;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 button:before {
@@ -373,7 +376,7 @@ button:hover:before {
 }
 
 .header-icon {
-  font-size: 2.2em;
+  font-size: 1.6em;
   margin-right: 15px;
   background: rgba(214, 51, 108, 0.15);
   width: 60px;
@@ -385,6 +388,11 @@ button:hover:before {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   position: relative;
   overflow: hidden;
+}
+
+.header-icon .material-symbols-rounded {
+  font-size: 2em;
+  color: #d6336c;
 }
 
 .header-icon::after {
@@ -514,12 +522,19 @@ button:hover:before {
   transform: translateY(-2px);
 }
 
-/* Helpline page */
+/* Helpline page with clickable numbers */
 .helpline-list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
   margin: 20px 0;
+}
+
+.helpline-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  width: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .helpline-item {
@@ -535,20 +550,21 @@ button:hover:before {
   border-left: 4px solid #d6336c;
   position: relative;
   overflow: hidden;
+  margin-bottom: 15px;
 }
 
-.helpline-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+.helpline-item:active {
+  transform: scale(0.97);
   background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .helpline-icon {
-  font-size: 2em;
+  font-size: 1.2em;
   margin-right: 15px;
   background: rgba(214, 51, 108, 0.1);
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -578,10 +594,40 @@ button:hover:before {
 }
 
 .helpline-number {
+  display: flex;
+  align-items: center;
   font-size: 1.2em;
   font-weight: bold;
   color: #d6336c;
-  margin: 0;
+  margin: 5px 0 0 0;
+}
+
+.call-icon {
+  font-size: 1.2em;
+  margin-right: 8px;
+}
+
+.tap-icon {
+  position: absolute;
+  right: 15px;
+  color: rgba(0, 0, 0, 0.25);
+  font-size: 1.4em;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
 }
 
 /* Background decorations */
@@ -671,37 +717,17 @@ button:hover:before {
   }
 }
 
-/* Background for mobile screens - more subtle to improve content readability */
+/* Media queries for mobile - container should cover full screen */
 @media screen and (max-width: 480px) {
   body {
-    padding-top: 140px;
-    padding-bottom: 0;
+    padding: 0;
     justify-content: flex-start;
-    background-attachment: scroll;
-  }
-  
-  body::before {
-    background: linear-gradient(135deg, rgba(255, 154, 158, 0.9), rgba(250, 208, 196, 0.9));
-  }
-  
-  .navbar {
-    padding: 5px;
-  }
-  
-  .navbar a {
-    padding: 6px 8px;
-    font-size: 0.8em;
-    margin: 2px;
-  }
-  
-  h1 {
-    font-size: 1.3em;
   }
   
   .container {
     width: 100%;
     max-width: 100%;
-    height: calc(100vh - 140px);
+    height: 100vh;
     margin: 0;
     padding: 20px;
     border-radius: 0;
@@ -709,6 +735,8 @@ button:hover:before {
     border: none;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
     overflow-y: auto;
     background: rgba(255, 255, 255, 0.85);
   }
@@ -717,73 +745,44 @@ button:hover:before {
     display: none;
   }
   
-  .container:hover {
+  .container:active {
     transform: none;
     box-shadow: none;
   }
   
-  .button-group {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 20px;
+  .card-header {
+    margin-top: 20px;
   }
   
-  .tips-list, .helpline-list {
+  .button-group {
+    width: 100%;
+    margin: auto 0;
+    padding: 20px 0;
+  }
+  
+  .helpline-list, .tips-list {
+    width: 100%;
+    margin: 15px 0;
     flex: 1;
     overflow-y: auto;
-    margin-bottom: 20px;
-  }
-  
-  button {
-    padding: 12px;
-    margin: 8px 0;
-  }
-  
-  .location-info {
-    padding: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .location-info p {
-    font-size: 0.9em;
-  }
-  
-  .map-link {
-    padding: 8px 14px;
-    font-size: 0.9em;
-  }
-  
-  .call-screen {
-    width: 100%;
-    max-width: 100%;
-    height: 100vh;
-    border-radius: 0;
-    padding: 20px 15px;
-  }
-  
-  .caller-img {
-    width: 60px;
-    height: 60px;
-  }
-  
-  .call-screen h2 {
-    font-size: 1.3em;
-  }
-  
-  .call-screen p {
-    font-size: 1.1em;
   }
   
   .back-link {
     margin-top: auto;
-    padding: 10px;
+    padding: 12px 15px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
   }
   
-  /* Adjust safety icons for mobile */
-  .safety-icon {
-    opacity: 0.03;
+  /* Adjust for bottom nav */
+  body {
+    padding-bottom: 70px;
+  }
+  
+  .container {
+    padding-bottom: 20px;
+    margin-bottom: 0;
   }
 }
 
@@ -795,5 +794,118 @@ button:hover:before {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+  }
+}
+
+/* Button icon styling */
+.btn-icon {
+  font-size: 1.3em;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* Call screen avatar */
+.caller-avatar {
+  font-size: 5em;
+  margin-bottom: 10px;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tips icon styling */
+.tip-icon {
+  font-size: 1.8em;
+  color: #9c27b0;
+  min-width: 40px;
+  background: rgba(156, 39, 176, 0.1);
+  padding: 8px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+/* Helpline icons */
+.helpline-icon .material-symbols-rounded {
+  font-size: 1.8em;
+  color: #d6336c;
+}
+
+/* Bottom Navigation Bar */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 230, 240, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 5px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  border-top: 1px solid rgba(214, 51, 108, 0.2);
+  height: 65px;
+}
+
+.bottom-nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #666;
+  font-size: 0.75em;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  width: 20%;
+  height: 100%;
+}
+
+.bottom-nav a.active {
+  color: #d6336c;
+  font-weight: bold;
+}
+
+.bottom-nav a:active {
+  background: rgba(214, 51, 108, 0.1);
+  color: #d6336c;
+  transform: scale(0.95);
+}
+
+.bottom-nav .nav-icon {
+  font-size: 1.8em;
+  margin-bottom: 4px;
+  color: #d6336c;
+}
+
+/* Adjust padding for bottom navigation */
+@media screen and (max-width: 480px) {
+  body {
+    padding-bottom: 70px;
+  }
+  
+  .container {
+    padding-bottom: 20px;
+    margin-bottom: 0;
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  main {
+    margin-bottom: 70px;
+  }
+  
+  .back-link {
+    margin-bottom: 25px;
   }
 }
